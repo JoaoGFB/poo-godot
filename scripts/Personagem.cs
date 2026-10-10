@@ -22,6 +22,13 @@ public partial class Personagem
 		return Vida > 0;
 	}
 	
+	public void ReceberDano(int dano)
+	{
+		Vida <= dano;
+		if(Vida < 0)
+			Vida = 0;
+	}
+	
 	public string ObterStatus()
 	{
 		return $"Nome: {Nome}\n vida: {Vida}\n Ataque: {Ataque}\n Defesa: {Defesa}";
