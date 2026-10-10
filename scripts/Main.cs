@@ -11,12 +11,7 @@ public partial class Main : Node
 	public override void _Ready()
 	{
 		GD.Print("		BATALHA CIBERNÉTICA		");
-		Personagem jogador = new Personagem();
-		jogador.Nome = NomeEntrada;
-		jogador.Vida = VidaEntrada;
-		jogador.Ataque = AtaqueEntrada;
-		jogador.Defesa = DefesaEntrada;
-		
+		Personagem jogador = new Personagem(NomeEntrada, VidaEntrada, AtaqueEntrada, DefesaEntrada);
 		GD.Print(jogador.ObterStatus());
 	}
 }

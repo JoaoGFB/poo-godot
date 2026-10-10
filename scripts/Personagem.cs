@@ -3,10 +3,24 @@ using System;
 
 public partial class Personagem
 {
-	public string Nome;
-	public int Vida;
-	public int Ataque;
-	public int Defesa;
+	public string Nome {get; private set; }
+	public int Vida {get; private set; }
+	public int Ataque {get; private set; }
+	public int Defesa {get; private set; }
+	
+	public Personagem(string, nome, int vida, int ataque, int defesa)
+	{
+		Nome = nome;
+		Vida = vida;
+		VidaMaxima = vida;
+		Ataque = ataque;
+		Defesa = defesa;
+	}
+	
+	public bool EstaVivo()
+	{
+		return Vida > 0;
+	}
 	
 	public string ObterStatus()
 	{
