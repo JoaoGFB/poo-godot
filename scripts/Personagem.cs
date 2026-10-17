@@ -1,14 +1,15 @@
 using Godot;
 using System;
 
-public partial class Personagem
+public abstract class Personagem
 {
 	public string Nome {get; private set; }
 	public int Vida {get; private set; }
+	public int VidaMaxima {get; private set; }
 	public int Ataque {get; private set; }
 	public int Defesa {get; private set; }
 	
-	public Personagem(string, nome, int vida, int ataque, int defesa)
+	protected Personagem(string nome, int vida, int ataque, int defesa)
 	{
 		Nome = nome;
 		Vida = vida;
@@ -17,20 +18,31 @@ public partial class Personagem
 		Defesa = defesa;
 	}
 	
+	public int ReceberDano(int dano)
+	{
+		int vidaAntes = Vida;
+		Vida -= dano;
+		if (Vida < 0)
+			Vida = 0;
+		return vidaAntes - Vida;
+	}
+
+	public void Curar(int quantidade)
+	{
+		Vida += quantidade;
+		if (Vida > VidaMaxima)
+			Vida = VidaMaxima;
+	}
+
 	public bool EstaVivo()
 	{
 		return Vida > 0;
 	}
-	
-	public void ReceberDano(int dano)
-	{
-		Vida <= dano;
-		if(Vida < 0)
-			Vida = 0;
-	}
+
+	public abstract string Atacar();
 	
 	public string ObterStatus()
 	{
-		return $"Nome: {Nome}\n vida: {Vida}\n Ataque: {Ataque}\n Defesa: {Defesa}";
+		return $"Nome: {Nome}\n vida: {VidaMaxima}\n Ataque: {Ataque}\n Defesa: {Defesa}";
 	}
 }
